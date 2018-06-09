@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>HTTP Interceptor Demo</h1>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Login</div>
+    <div class="panel-body">
+      <div class="input-group">
+        <input [(ngModel)]="id" type="text" id="name" class="form-control" placeholder="ID">
+        <input [(ngModel)]="password" type="password" id="paw" class="form-control" placeholder="Password">
+        <input type="submit" id="submit" class="form-control" value="Submit" (click)="login()">
+      </div>
+    </div>
+  </div>
+</div>
