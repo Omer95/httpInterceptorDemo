@@ -11,7 +11,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(id:string, password:string) {
-    return this.http.post('/api/login', {id, password}).subscribe(res=> this.setSession);
+    return this.http.post('http://localhost:8000/api/login', {id, password}).subscribe(res=> {
+      console.log('received response for post request')
+      this.setSession(res)
+    });
   }
   private setSession(authResult) {
     const expiresAt=moment().add(authResult.expiredIn, 'second');
