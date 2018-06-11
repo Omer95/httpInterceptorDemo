@@ -16,14 +16,20 @@ var userId
 var userPassword
 
 app.get('/api/random', (req, res)=> {
-    var token=req.headers['Authorization']
+    //var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjkzMDY4NjgyNzJ9.xy86G670KA1uYGUi-hfpUm5o9g1ILiQRuK2tgR_7RaI"
+    var token=req.header("Authorization")
+    //console.log(JSON.stringify(req.headers));
     if (token) {
-        var decoded=jwt.decode(token, app.get('jwtTokenSecret'))
+        console.log(token)
+        var decoded=jwt.decode(token, 'SECRET_STRING')
         console.log(decoded)
     }
     else {
         console.log('not decoded')
     }
+    res.json({
+        password: 'here is your random object'
+    })
 
 })
 
@@ -35,9 +41,9 @@ app.post('/api/login', (req, res)=> {
     if (userId==='omer' && userPassword==='farooq') {
         var expires = moment().add(7, 'days').valueOf();
         var token = jwt.encode({
-            iss: this.userId,
+            iss: req.body.id,
             exp: expires
-        }, app.get('jwtTokenSecret'));
+        }, 'SECRET_STRING');
         res.json({
             token: token,
             expires: expires
