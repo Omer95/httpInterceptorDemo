@@ -7,6 +7,7 @@ import * as moment from "moment";
   providedIn: 'root'
 })
 export class AuthService {
+  response: string;
 
   constructor(private http: HttpClient) { }
 
@@ -14,13 +15,21 @@ export class AuthService {
     return this.http.post('http://localhost:8000/api/login', {id, password}).subscribe(res=> {
       console.log('received response for post request')
       this.setSession(res)
+      this.response = JSON.stringify(res.valueOf())
+      console.log(this.response)
     });
   }
+
+  randGet() {
+    return this.http.get('http://localhost:8000/api/random').subscribe(res=>console.log(res))
+  }
+
   private setSession(authResult) {
-    const expiresAt=moment().add(authResult.expiredIn, 'second');
-    localStorage.setItem('id_token', authResult.idToken); //assuming the server's token key is called idToken and the server sends the JWT in the response body
+    console.log('setSession method is running')
+    const expiresAt=moment().add(authResult.expires, 'second');
+    localStorage.setItem('id_token', JSON.stringify(authResult.token.valueOf())); 
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-    console.log(localStorage.getItem('id_token'));
+    console.log(JSON.parse(localStorage.getItem('expires_at')));
   }
 
   logout() {

@@ -19,6 +19,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  randGet() {
+    if (this.id && this.password) {
+      this.authService.randGet();
+    }
+  }
+
   ngOnInit() {
   }
 
