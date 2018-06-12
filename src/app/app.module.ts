@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
+import { ResponseInterceptor } from './response-interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,11 @@ import { AuthInterceptor } from './auth-interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
       multi: true
     }
   ],
