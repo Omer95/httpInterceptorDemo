@@ -51,7 +51,7 @@ app.post('/api/login', (req, res)=> {
         })
     }
     else {
-        res.json({password: req.body.password})
+        res.status(403).send('Access Denied')
     }
 })
 
