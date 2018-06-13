@@ -16,15 +16,17 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.id && this.password) {
-      this.authService.login(this.id, this.password);
-      console.log(this.id+" "+this.password)
-      if (this.authService.isLoggedIn()) {
-        this.router.navigate(['dashboard'])
-      }
-      else {
-        this.denied='true';
-      }
-      
+      this.authService.login(this.id, this.password).subscribe(res=> {
+        console.log(this.id+" "+this.password)
+        if (!this.authService.isLoggedIn()) {
+          this.denied='true';
+          console.log('incorrect ID/Password')
+        }
+        else {
+          this.router.navigate(['dashboard'])
+        }
+      })
+      this.denied='true'
     }
   }
 

@@ -6,18 +6,20 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class DashGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.auth.isLoggedIn()) {
+      this.router.navigate(['dashboard'])
       return true;
     }
     else {
-      window.alert("You don't have permission to view this page");
-      this.router.navigate(['login'])
-      return false;
+      
+      return true;
     }
+    
+    
   }
 }

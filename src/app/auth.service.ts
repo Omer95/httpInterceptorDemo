@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators'
 import * as moment from "moment";
 
 @Injectable({
@@ -12,12 +13,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(id:string, password:string) {
-    return this.http.post('http://localhost:8000/api/login', {id, password}).subscribe(res=> {
-      console.log('received response for post request')
-      this.setSession(res)
-      this.response = JSON.stringify(res.valueOf())
-      console.log(this.response)
-    });
+    return this.http.post('http://localhost:8000/api/login', {id, password}).pipe(
+      tap(res=> {
+        console.log('received response for post request')
+        this.setSession(res)
+        this.response = JSON.stringify(res.valueOf())
+        console.log(this.response)
+      })
+    )
   }
 
   randGet() {
