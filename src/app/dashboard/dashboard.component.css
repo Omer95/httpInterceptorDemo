@@ -1,0 +1,9 @@
+.loginForm input[type=text], .loginForm input[type=password]{
+	margin-bottom:10px;
+}
+.input-group input[type=submit]{
+	background:#fb044a;
+	color:#fff;
+	font-weight:700;
+	
+}

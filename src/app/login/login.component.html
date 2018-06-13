@@ -11,6 +11,9 @@
         <input type="submit" id="submit" class="form-control" value="Submit" (click)="login()">
         <input type="submit" id="submit" class="form-control" value="Random Request" (click)="randGet()">
       </div>
+      <div *ngIf="denied">
+        <span class="label label-danger">Incorrect ID/Password</span>
+      </div>
     </div>
   </div>
 </div>

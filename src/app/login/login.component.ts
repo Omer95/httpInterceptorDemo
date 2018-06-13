@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   @Input() id: string;
   @Input() password: string;
+  denied: string
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -17,7 +18,13 @@ export class LoginComponent implements OnInit {
     if (this.id && this.password) {
       this.authService.login(this.id, this.password);
       console.log(this.id+" "+this.password)
-      this.router.navigate(['dashboard'])
+      if (this.authService.isLoggedIn()) {
+        this.router.navigate(['dashboard'])
+      }
+      else {
+        this.denied='true';
+      }
+      
     }
   }
 

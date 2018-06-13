@@ -12,7 +12,7 @@ export class LoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.auth.isLoggedIn()) {
-      return false;
+      return true;
     }
     else {
       window.alert("You don't have permission to view this page");
