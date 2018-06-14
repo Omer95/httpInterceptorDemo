@@ -36,17 +36,7 @@ export class LoginComponent implements OnInit {
       this.authService.randGet();
     }
   }
-
-  // isDenied() {
-  //   if (this.denied==='true') {
-  //     console.log('true')
-  //     return true
-  //   }
-  //   else {
-  //     return false
-  //   }
-  // }
-
+  
   ngOnInit() {
   }
 
