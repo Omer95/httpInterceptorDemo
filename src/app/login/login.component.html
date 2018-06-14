@@ -5,11 +5,14 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Login</div>
     <div class="panel-body">
-      <div class="input-group">
-        <input [(ngModel)]="id" type="text" id="name" class="form-control" placeholder="ID">
-        <input [(ngModel)]="password" type="password" id="paw" class="form-control" placeholder="Password">
-        <input type="submit" id="submit" class="form-control" value="Submit" (click)="login()">
-        <input type="submit" id="submit" class="form-control" value="Random Request" (click)="randGet()">
+      <div class="form-group">
+        <input [(ngModel)]="id" type="text" id="name" class="form-control" [ngClass]="{'dangerClass': denied}" placeholder="ID">
+        <label></label>
+        <input [(ngModel)]="password" type="password" id="paw" class="form-control" [ngClass]="{'dangerClass': denied}" placeholder="Password">
+        <label></label>
+        <input type="submit" id="submit" class="form-control btn-danger" value="Submit" (click)="login()">
+        <label></label>
+        <input type="submit" id="submit" class="form-control btn-danger" value="Random Request" (click)="randGet()">
       </div>
       <div *ngIf="denied">
         <span class="label label-danger">Incorrect ID/Password</span>

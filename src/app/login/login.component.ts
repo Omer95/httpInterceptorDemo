@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   @Input() id: string;
   @Input() password: string;
   denied: string
+  inputColor: string 
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -35,6 +36,16 @@ export class LoginComponent implements OnInit {
       this.authService.randGet();
     }
   }
+
+  // isDenied() {
+  //   if (this.denied==='true') {
+  //     console.log('true')
+  //     return true
+  //   }
+  //   else {
+  //     return false
+  //   }
+  // }
 
   ngOnInit() {
   }
